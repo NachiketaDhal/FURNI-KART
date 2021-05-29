@@ -27,6 +27,7 @@ const SingleProductPage = () => {
     id: sku,
     company,
     images,
+    colors,
   } = singleProduct;
   const { id } = useParams();
   const history = useHistory();
@@ -78,7 +79,7 @@ const SingleProductPage = () => {
               {company}
             </p>
             <hr />
-            {stock > 0 && <AddToCart />}
+            {stock > 0 && <AddToCart id={id} stock={stock} colors={colors} />}
           </section>
         </div>
       </div>

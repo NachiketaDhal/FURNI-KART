@@ -1,13 +1,54 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import { FaCheck } from 'react-icons/fa'
-import { useCartContext } from '../context/cart_context'
-import AmountButtons from './AmountButtons'
+import React, { useState } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { FaCheck } from "react-icons/fa";
+import { useCartContext } from "../context/cart_context";
+import AmountButtons from "./AmountButtons";
 
-const AddToCart = () => {
-  return <h4>addToCart </h4>
-}
+const AddToCart = ({ id, stock, colors }) => {
+  const [activeColorBtn, setActiveColorBtn] = useState(colors[0]);
+  const [amount, setAmount] = useState(1);
+
+  const handleIncrease = () => {
+    if (amount < stock) setAmount(amount + 1);
+  };
+
+  const handleDecrease = () => {
+    if (amount > 1) setAmount(amount - 1);
+  };
+
+  return (
+    <Wrapper>
+      <div className="colors">
+        <span>Colors : </span>
+        <div>
+          {colors.map((color, i) => {
+            return (
+              <button
+                key={i}
+                className={`color-btn ${activeColorBtn === color && "active"}`}
+                style={{ background: color }}
+                onClick={() => setActiveColorBtn(color)}
+              >
+                {activeColorBtn === color && <FaCheck />}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+      <div className="btn-container">
+        <AmountButtons
+          handleIncrease={handleIncrease}
+          handleDecrease={handleDecrease}
+          amount={amount}
+        />
+        <Link to="/cart" className="btn">
+          Add to Cart
+        </Link>
+      </div>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.section`
   margin-top: 2rem;
@@ -53,5 +94,5 @@ const Wrapper = styled.section`
     margin-top: 1rem;
     width: 140px;
   }
-`
-export default AddToCart
+`;
+export default AddToCart;
