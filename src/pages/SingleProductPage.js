@@ -27,13 +27,13 @@ const SingleProductPage = () => {
     id: sku,
     company,
     images,
-    colors,
   } = singleProduct;
   const { id } = useParams();
   const history = useHistory();
 
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`);
+    // eslint-disable-next-line
   }, [id]);
 
   useEffect(() => {
@@ -42,6 +42,7 @@ const SingleProductPage = () => {
         history.push("/");
       }, 3000);
     }
+    // eslint-disable-next-line
   }, [singleProductError]);
 
   if (singleProductLoading) {

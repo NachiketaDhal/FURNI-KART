@@ -9,6 +9,7 @@ const CartTotals = () => {
   const {
     state: { totalAmount, shippingFee },
   } = useCartContext();
+  const { myUser, loginWithRedirect } = useUserContext();
 
   return (
     <Wrapper>
@@ -25,9 +26,15 @@ const CartTotals = () => {
             Subtotal: <span>{formatPrice(totalAmount + shippingFee)}</span>
           </h4>
         </article>
-        <Link to="/checkout" className="btn">
-          Proceed to checkout
-        </Link>
+        {myUser ? (
+          <Link to="/checkout" className="btn">
+            Proceed to checkout
+          </Link>
+        ) : (
+          <button className="btn" onClick={loginWithRedirect}>
+            Login to Continue
+          </button>
+        )}
       </div>
     </Wrapper>
   );

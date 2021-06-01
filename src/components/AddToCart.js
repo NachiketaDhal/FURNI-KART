@@ -10,7 +10,7 @@ const AddToCart = ({ singleProduct }) => {
   const [activeColorBtn, setActiveColorBtn] = useState(colors[0]);
   const [amount, setAmount] = useState(1);
 
-  const { state, addToCart } = useCartContext();
+  const { addToCart } = useCartContext();
 
   const handleIncrease = () => {
     if (amount < stock) setAmount(amount + 1);

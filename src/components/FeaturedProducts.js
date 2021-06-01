@@ -8,7 +8,7 @@ import Product from "./Product";
 
 const FeaturedProducts = () => {
   const { state } = useProductsContext();
-  const { productsLoading, productsError, products, featuredProducts } = state;
+  const { productsLoading, productsError, featuredProducts } = state;
 
   if (productsLoading) {
     return <Loading />;
