@@ -76,6 +76,7 @@ const filter_reducer = (state, action) => {
     return {
       ...state,
       filters: {
+        ...state.filters,
         text: "",
         category: "all",
         company: "all",
